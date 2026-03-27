@@ -35,6 +35,26 @@ public class User {
         this.membershipCode = membershipCode;
     }
 
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public int getMembershipCode() {
+        return membershipCode;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
     @Override
     public String toString() {
         return "User{" +

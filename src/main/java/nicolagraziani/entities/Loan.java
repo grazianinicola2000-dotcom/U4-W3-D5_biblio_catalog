@@ -33,12 +33,36 @@ public class Loan {
     public Loan() {
     }
 
-    public Loan(User user, CatalogItem item, LocalDate startDate, LocalDate expectedReturnDate, LocalDate effectiveReturnDate) {
+    public Loan(User user, CatalogItem item, LocalDate startDate, LocalDate effectiveReturnDate) {
         this.user = user;
         this.item = item;
         this.startDate = startDate;
-        this.expectedReturnDate = expectedReturnDate;
+        this.expectedReturnDate = startDate.plusDays(30);
         this.effectiveReturnDate = effectiveReturnDate;
+    }
+
+    public UUID getLoanId() {
+        return loanId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public CatalogItem getItem() {
+        return item;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getExpectedReturnDate() {
+        return expectedReturnDate;
+    }
+
+    public LocalDate getEffectiveReturnDate() {
+        return effectiveReturnDate;
     }
 
     @Override
