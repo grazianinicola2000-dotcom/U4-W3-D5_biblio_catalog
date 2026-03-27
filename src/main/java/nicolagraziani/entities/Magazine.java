@@ -1,13 +1,12 @@
 package nicolagraziani.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import nicolagraziani.enums.Periodicity;
 
 @Entity
 @DiscriminatorValue("magazine")
 public class Magazine extends CatalogItem {
+    @Enumerated(EnumType.STRING)
     @Column(name = "periodicity")
     private Periodicity period;
 

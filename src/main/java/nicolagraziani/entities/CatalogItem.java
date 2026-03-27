@@ -36,6 +36,14 @@ public abstract class CatalogItem {
         this.pages = pages;
     }
 
+    public UUID getItemId() {
+        return itemId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
     @Override
     public String toString() {
         return "CatalogItem{" +
