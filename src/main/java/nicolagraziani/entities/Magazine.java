@@ -21,7 +21,9 @@ public class Magazine extends CatalogItem {
     @Override
     public String toString() {
         return "Magazine{" +
-                "period=" + period +
+                " title='" + super.getTitle() + '\'' +
+                ", period=" + period +
+                ", ISBN='" + super.getIsbn() + '\'' +
                 '}';
     }
 }

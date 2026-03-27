@@ -10,6 +10,8 @@ import nicolagraziani.entities.Magazine;
 import nicolagraziani.enums.Periodicity;
 import nicolagraziani.exceptions.ItemNotFoundException;
 
+import java.util.List;
+
 public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("epibook");
 
@@ -28,18 +30,18 @@ public class Application {
         Book b9 = new Book(108, "Fahrenheit 451", 1953, 250, "Bradbury", "Distopia");
         Book b10 = new Book(109, "Il Piccolo Principe", 1943, 120, "Saint-Exupéry", "Fiaba");
 
-        Magazine m1 = new Magazine(200, "National Geographic", 2024, 100, Periodicity.MONTHLY);
-        Magazine m2 = new Magazine(201, "Time", 2024, 80, Periodicity.WEEKLY);
-        Magazine m3 = new Magazine(202, "Focus", 2024, 90, Periodicity.MONTHLY);
-        Magazine m4 = new Magazine(203, "Scientific American", 2024, 110, Periodicity.MONTHLY);
-        Magazine m5 = new Magazine(204, "Wired", 2024, 85, Periodicity.SEMIANNUAL);
-        Magazine m6 = new Magazine(205, "Nature", 2024, 120, Periodicity.WEEKLY);
-        Magazine m7 = new Magazine(206, "Forbes", 2024, 95, Periodicity.MONTHLY);
-        Magazine m8 = new Magazine(207, "Internazionale", 2024, 70, Periodicity.WEEKLY);
-        Magazine m9 = new Magazine(208, "Le Scienze", 2024, 100, Periodicity.SEMIANNUAL);
-        Magazine m10 = new Magazine(209, "Panorama", 2024, 75, Periodicity.WEEKLY);
+        Magazine m1 = new Magazine(200, "National Geographic", 2026, 100, Periodicity.MONTHLY);
+        Magazine m2 = new Magazine(201, "Time", 2026, 80, Periodicity.WEEKLY);
+        Magazine m3 = new Magazine(202, "Focus", 2026, 90, Periodicity.MONTHLY);
+        Magazine m4 = new Magazine(203, "Scientific American", 2026, 110, Periodicity.MONTHLY);
+        Magazine m5 = new Magazine(204, "Wired", 2026, 85, Periodicity.SEMIANNUAL);
+        Magazine m6 = new Magazine(205, "Nature", 2026, 120, Periodicity.WEEKLY);
+        Magazine m7 = new Magazine(206, "Forbes", 2026, 95, Periodicity.MONTHLY);
+        Magazine m8 = new Magazine(207, "Internazionale", 2026, 70, Periodicity.WEEKLY);
+        Magazine m9 = new Magazine(208, "Le Scienze", 2026, 100, Periodicity.SEMIANNUAL);
+        Magazine m10 = new Magazine(209, "Panorama", 2026, 75, Periodicity.WEEKLY);
 
-//        AGGIUNTA DI UN ELEMENTO A CATALOGO
+//        AGGIUNTA DI UN ELEMENTO AL CATALOGO
 //        cid.save(b1);
 //        cid.save(b2);
 //        cid.save(b3);
@@ -62,20 +64,37 @@ public class Application {
 //        cid.save(m9);
 //        cid.save(m10);
 
-//        RIMOZIONE DI UN ELEMENTO DEL CATALOGO DATO CODICE ISBM
+//        RIMOZIONE DAL CATALOGO DATO UN CODICE ISBM
         try {
             cid.deleteByISBN(105);
         } catch (ItemNotFoundException e) {
+            System.out.println("!--------ATTENZIONE-------!");
             System.out.println(e.getMessage());
         }
 
-//        RICERCA DI UN ELEMENTO PER ISBN
+//        RICERCA PER ISBN
+        System.out.println("--------Risultato ricerca per ISBN-------");
         try {
-            CatalogItem searched = cid.getByISBN(106);
+            CatalogItem searched = cid.findByISBN(106);
             System.out.println(searched);
         } catch (ItemNotFoundException e) {
             System.out.println(e.getMessage());
         }
+
+//        RICERCA PER ANNO DI PUBBLICAZIONE
+        System.out.println("--------Risultato ricerca per anno di pubblicazione-------");
+        List<CatalogItem> searchedByYear = cid.findByPublicationYear(2026);
+        searchedByYear.forEach(System.out::println);
+
+//        RICERCA PER AUTORE(Book)
+        System.out.println("--------Risultato ricerca per autore-------");
+        List<Book> searchedByAuthor = cid.findByAuthor("brown");
+        searchedByAuthor.forEach(System.out::println);
+
+//        RICERCA PER TITOLO O PARTE DI ESSO
+        System.out.println("--------Risultato ricerca per titolo o parte di esso-------");
+        List<CatalogItem> searchedByPartialTitle = cid.findByTitleStartsWith("i");
+        searchedByPartialTitle.forEach(System.out::println);
 
         em.close();
         emf.close();

@@ -2,9 +2,11 @@ package nicolagraziani.entities;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
 
 @Entity
 @DiscriminatorValue("book")
+@NamedQuery(name = "findByAuthor", query = "SELECT i FROM Book i WHERE LOWER(i.author) = LOWER(:author)")
 public class Book extends CatalogItem {
     private String author;
     private String genre;
@@ -21,8 +23,12 @@ public class Book extends CatalogItem {
     @Override
     public String toString() {
         return "Book{" +
-                "author='" + author + '\'' +
+                " title='" + super.getTitle() + '\'' +
+                ", author='" + author + '\'' +
                 ", genre='" + genre + '\'' +
+                ", publication_year='" + super.getPublicationYear() + '\'' +
+                ", pages='" + super.getPages() + '\'' +
+                ", ISBN='" + super.getIsbn() + '\'' +
                 '}';
     }
 }

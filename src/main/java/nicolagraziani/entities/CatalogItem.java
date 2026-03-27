@@ -40,18 +40,20 @@ public abstract class CatalogItem {
         return itemId;
     }
 
+    public int getIsbn() {
+        return isbn;
+    }
+
+    public int getPublicationYear() {
+        return publicationYear;
+    }
+
+    public int getPages() {
+        return pages;
+    }
+
     public String getTitle() {
         return title;
     }
-
-    @Override
-    public String toString() {
-        return "CatalogItem{" +
-                "itemId=" + itemId +
-                ", isbn=" + isbn +
-                ", title='" + title + '\'' +
-                ", publicationYear=" + publicationYear +
-                ", pages=" + pages +
-                '}';
-    }
+    
 }
