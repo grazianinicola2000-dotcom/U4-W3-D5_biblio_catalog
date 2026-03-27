@@ -6,6 +6,8 @@
         <class>nicolagraziani.entities.CatalogItem</class>
         <class>nicolagraziani.entities.Magazine</class>
         <class>nicolagraziani.entities.Book</class>
+        <class>nicolagraziani.entities.User</class>
+        <class>nicolagraziani.entities.Loan</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/epibook"/>
             <property name="jakarta.persistence.jdbc.user" value="postgres"/>
